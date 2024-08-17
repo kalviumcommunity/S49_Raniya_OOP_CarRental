@@ -4,37 +4,46 @@
 
 
 int main(){
-    //Create a car object
-    Car car1(101,"Toyota", true);
+    
+
+     // creating an Array of Car objects
+    Car car1[3] = {
+        Car(101, "Toyota Corolla", true),
+        Car(102, "Honda Civic", true),
+        Car(103, "Ford Mustang", true)
+    };
 
 
      // Display car details before renting
-    car1.displayDetails();
+    car1[1].displayDetails();
 
 
     //to rent the car
-    car1.rentCar();
+    car1[1].rentCar();
 
 
      // Display car details after renting
-    car1.displayDetails();
+    car1[1].displayDetails();
 
 
-    //create a user object
-    User user1(1,"John");
+    //create a array of  user object
+    User user1[2]={
+        User(41,"John"),
+        User(42,"Linda")
+    };
 
      // Register and login user
-    user1.registerUser();
-    user1.login();
+    user1[1].registerUser();
+    user1[1].login();
 
 
 
     //return the car
-    car1.returnCar();
+    car1[1].returnCar();
 
 
     // Display car details after returning
-    car1.displayDetails();
+    car1[1].displayDetails();
 
     return 0;
 }
