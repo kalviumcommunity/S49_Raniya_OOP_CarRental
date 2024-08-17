@@ -18,12 +18,17 @@ class User{
 
     // Method to register the user
     void registerUser() {
-        cout << "User " << name << " registered." << endl;
+        cout << "User " << this->name << " registered." << endl;
     }
 
     // Method to login the user
     void login() {
-        cout << "User " << name << " logged in." << endl;
+        cout << "User " << this->name << " logged in." << endl;
+    }
+
+    // Method to display user details
+    void displayDetails() {
+        cout << "User ID: " << this->userID << ", Name: " << this->name << endl;
     }
 
 };

@@ -16,12 +16,14 @@ class Car{
     //these member methods cant be static as they need to modify the objects state (isAvailable) which is not possible with static functions
     void  rentCar();    
     void  returnCar();
+    void displayDetails();
 
 };
 
 //constructor implementation 
 Car::Car(int carID, string model, bool isAvailable){
-    this->carID = carID;
+    //this->carID refers to the member variable
+    this->carID = carID;//refers to constructor's parameter
     this->model =model;
     this->isAvailable=isAvailable;
 }
@@ -43,5 +45,11 @@ void Car::returnCar(){
         } else {
             cout << "Car " << model << " was not rented." << endl;
         }
+}
+
+// Method to display car details
+void Car::displayDetails() {
+    //to access the member variable of the current object.
+    cout << "Car ID: " << this->carID << ", Model: " << this->model << ", Availability: " << (this->isAvailable ? "Yes" : "No") << endl;
 }
 
