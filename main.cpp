@@ -2,9 +2,8 @@
 #include "car.cpp"
 #include "user.cpp"
 
-
 int main(){
-    
+   
 
      // creating an Array of Car objects  using dynamic memory allocation
     Car* car1 = new Car[3] {
@@ -44,6 +43,11 @@ int main(){
 
     // Display car details after returning
     car1[1].displayDetails();
+
+
+    // Display the total number of cars and users
+    cout << "Total Cars : " << Car::totalCars << endl;
+    cout << "Total Users : " << User::totalusers << endl;
 
 
     //freee up memory for user1 and car1 to avoid memory leaks

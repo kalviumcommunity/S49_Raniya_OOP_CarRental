@@ -8,11 +8,13 @@ class User{
     public:
         int userID;
         string name;
+        static int totalusers;
 
     //constructor
     User(int userID,string name){
         this->userID=userID;
         this->name=name;
+        totalusers++;
     }    
 
 
@@ -32,3 +34,5 @@ class User{
     }
 
 };
+
+int User::totalusers=0;
