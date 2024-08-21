@@ -6,8 +6,8 @@
 int main(){
     
 
-     // creating an Array of Car objects
-    Car car1[3] = {
+     // creating an Array of Car objects  using dynamic memory allocation
+    Car* car1 = new Car[3] {
         Car(101, "Toyota Corolla", true),
         Car(102, "Honda Civic", true),
         Car(103, "Ford Mustang", true)
@@ -26,8 +26,8 @@ int main(){
     car1[1].displayDetails();
 
 
-    //create a array of  user object
-    User user1[2]={
+    //create a array of  user object using dynamic memory allocation
+    User* user1 = new User[2]{
         User(41,"John"),
         User(42,"Linda")
     };
@@ -44,6 +44,11 @@ int main(){
 
     // Display car details after returning
     car1[1].displayDetails();
+
+
+    //freee up memory for user1 and car1 to avoid memory leaks
+    delete[] car1;
+    delete[] user1;
 
     return 0;
 }
