@@ -6,14 +6,18 @@ using namespace std;
 // Car class definition
 class Car {
 private:
+
+//internal details of a car that users should not be able to modify directly
     int carID;
     string model;
     bool isAvailable;
     double rentalRate;
 
+
+//public data members  for operations like renting or returning car etc, mutators and accessors are also public
 public:
-    static int totalCars; // Declaration
-    static double discountPercentage; // Declaration
+    static int totalCars; 
+    static double discountPercentage; 
 
     // Constructor
     Car(int carID, string model, bool isAvailable, double rentalRate) {
@@ -90,5 +94,5 @@ public:
 };
 
 // Initialize static variables
-int Car::totalCars = 0; // Definition
-double Car::discountPercentage = 11.0; // Definition
+int Car::totalCars = 0; 
+double Car::discountPercentage = 11.0;
