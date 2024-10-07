@@ -1,10 +1,14 @@
 class User {
+
+//user should not be able to modify them directly hence they are private 
 private:
     int userID;
     string name;
 
+
+//all action functions like register , login  accessors and mutators to control how user data is accessed and modified. 
 public:
-    static int totalUsers; // Declaration
+    static int totalUsers; 
 
     // Constructor
     User(int userID, string name) {
@@ -48,4 +52,4 @@ public:
 };
 
 // Initialize static variables
-int User::totalUsers = 0; // Definition
+int User::totalUsers = 0;
