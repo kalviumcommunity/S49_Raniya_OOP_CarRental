@@ -8,12 +8,18 @@ class User; // Forward declaration
 
 int main() {
    // Creating instances of Car and User using dynamic memory allocation
-    Car* car1 = new Car(101, "Toyota C", true, 50.0);
+    Car* car1 = new Car(101, "Toyota Corolla", true, 50.0);
     User* user1 = new User(1, "John Doe");
 
-    // Displaying details
+    //usiing default constructor
+     Car* car2 = new Car(); 
+     User* user2 = new User();
+
+     // Displaying details
     car1->displayDetails();
+    car2->displayDetails();
     user1->displayDetails();
+    user2->displayDetails();
 
     // Demonstrating renting and returning a car
     car1->rentCar();
@@ -33,6 +39,9 @@ int main() {
     // Freeing allocated memory
     delete car1;
     delete user1;
+
+    delete car2;
+    delete user2;
 
     return 0;
 

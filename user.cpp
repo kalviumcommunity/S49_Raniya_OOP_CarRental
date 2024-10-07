@@ -10,11 +10,24 @@ private:
 public:
     static int totalUsers; 
 
-    // Constructor
+    //default constructor
+    User() {
+        userID = 0;
+        name = "default";
+      
+    }
+
+    // parameterized Constructor
     User(int userID, string name) {
         setUserID(userID);
         setName(name);
         totalUsers++;
+    }
+
+    // Destructor
+    ~User() {
+        
+        totalUsers--;
     }
 
     // Accessor methods

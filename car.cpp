@@ -19,13 +19,27 @@ public:
     static int totalCars; 
     static double discountPercentage; 
 
-    // Constructor
+     //default constructor
+    Car() {
+        carID = 0;
+        model = "default";
+        isAvailable = true;
+        rentalRate=0.0;
+        
+    }
+
+
+    // parameterized Constructor
     Car(int carID, string model, bool isAvailable, double rentalRate) {
         setCarID(carID);
         setModel(model);
         setIsAvailable(isAvailable);
         setRentalRate(rentalRate);
         totalCars++;
+    }
+
+    ~Car(){
+        totalCars--;
     }
 
     // Accessor methods
