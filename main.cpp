@@ -5,40 +5,65 @@
 
 
 int main() {
-   // Creating instances of Car and User using dynamic memory allocation
-    Car* car1 = new Car(101, "Toyota C", true, 50.0);
-    User* user1 = new User(1, "John Doe");
-    ElectricCar* eCar1 = new ElectricCar(902, "Tesla electric",  true, 100.0, 75.0);
-    HybridCar* hCar1 = new HybridCar(103, "Toyota Prius hybrid", true, 120.0, 65.0, 50.0);
-
-     // Displaying details
-    car1->displayDetails();
    
-    eCar1->displayDetails();
-    user1->displayDetails();
-    hCar1->displayDetails();
- 
+    User* user1 = new User(1, "John Doe");
 
-    //  renting and returning a car
-    car1->rentCar();
-    car1->displayDetails();
-    car1->returnCar();
-    car1->displayDetails();
+
+      // Creating instances of Car using different constructors
+    Car car1;  // Default constructor
+    Car car2(101, "Toyota Corolla");  // Parameterized constructor (carID and model)
+    Car car3(102, "Honda Civic", true, 45.0);  // Full parameterized constructor
+
+    // Creating instances of ElectricCar
+    ElectricCar electricCar1;  // Default constructor
+    ElectricCar electricCar2(201, "Tesla Model S", 100.0);  // Constructor with model and battery capacity
+    ElectricCar electricCar3(202, "Nissan Leaf", false, 50.0, 40.0);  // Full parameterized constructor
+
+    // Creating instances of HybridCar
+    HybridCar hybridCar1;  // Default constructor
+    HybridCar hybridCar2(301, "Toyota Prius", 60.0, 50.0);  // Constructor with model, battery capacity, and fuel efficiency
+    HybridCar hybridCar3(302, "Honda Clarity", true, 55.0, 50.0, 48.0);  // Full parameterized constructor
+    
+
+
+    user1->displayDetails();
+
+
+    // Displaying details of all cars
+    cout << "Car Details:\n";
+    car1.displayDetails();
+    car2.displayDetails();
+    car3.displayDetails();
+
+    cout << "\nElectric Car Details:\n";
+    electricCar1.displayDetails();
+    electricCar2.displayDetails();
+    electricCar3.displayDetails();
+
+    cout << "\nHybrid Car Details:\n";
+    hybridCar1.displayDetails();
+    hybridCar2.displayDetails();
+    hybridCar3.displayDetails();
+
+   
 
     //  user registration and login
     user1->registerUser();
     user1->login();
 
 
+
+ // Renting and returning a car
+    car2.rentCar();
+    car2.displayDetails();
+    car2.returnCar();
+    car2.displayDetails();
+    
+
      // Display the total number of cars and users
     cout << "Total Cars: " << Car::totalCars << endl;
     cout << "Total Users: " << User::totalUsers << endl;
 
-    // Freeing allocated memory
-    delete car1;
-    delete user1;
-    delete hCar1;
-    delete eCar1;
 
    
     return 0;

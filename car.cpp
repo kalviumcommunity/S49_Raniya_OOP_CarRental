@@ -21,9 +21,19 @@ public:
         model = "default";
         isAvailable = true;
         rentalRate = 0.0;
+        totalCars++; 
     }
 
-    // Parameterized constructor
+    // Parameterized constructor (with carID and model only)
+    Car(int carID, string model) {
+        this->carID = carID;
+        this->model = model;
+        this->isAvailable = true; // Default to available
+        this->rentalRate = 0.0;   // Default rental rate
+        totalCars++;
+    }
+
+    // Full parameterized constructor
     Car(int carID, string model, bool isAvailable, double rentalRate) {
         setCarID(carID);
         setModel(model);
@@ -98,11 +108,13 @@ public:
         return rate * (1 - discountPercentage / 100);
     }
 
-    // Method to display car details
-    void displayDetails() const {
+   // Virtual method to display car details
+    virtual void displayDetails() const {
         cout << "Car ID: " << getCarID() << ", Model: " << getModel() << ", Availability: "
              << (getIsAvailable() ? "Yes" : "No") << ", Rental Rate: $" << getRentalRate() << endl;
     }
+
+
 };
 
 // Initialize static variables
@@ -115,12 +127,22 @@ private:
     double batteryCapacity;
 
 public:
-    // Constructor
-    ElectricCar(int carID, string model, bool isAvailable, double rentalRate, double batteryCapacity)
-    : Car(carID, model, isAvailable, rentalRate) {  
-    this->batteryCapacity = batteryCapacity;
-}
+    // Default constructor
+    ElectricCar() : Car() {
+        batteryCapacity = 0.0; // Default battery capacity
+    }
 
+    // Constructor with model and battery capacity
+    ElectricCar(int carID, string model, double batteryCapacity)
+        : Car(carID, model) {  // Calls the constructor of Car with carID and model
+        this->batteryCapacity = batteryCapacity;
+    }
+
+    // Full parameterized constructor
+    ElectricCar(int carID, string model, bool isAvailable, double rentalRate, double batteryCapacity)
+        : Car(carID, model, isAvailable, rentalRate) {
+        this->batteryCapacity = batteryCapacity;
+    }
 
     // to display electric car details
     void displayDetails() const {
@@ -130,20 +152,30 @@ public:
 };
 
 
-
 // HybridCar class inherits from ElectricCar (Multilevel Inheritance)
 class HybridCar : public ElectricCar {
 private:
     double fuelEfficiency; // Additional attribute for hybrid cars
 
 public:
-    // Constructor
+     // Default constructor
+    HybridCar() : ElectricCar() {
+        fuelEfficiency = 0.0; // Default fuel efficiency
+    }
+
+    // Constructor with model, battery capacity, and fuel efficiency
+    HybridCar(int carID, string model, double batteryCapacity, double fuelEfficiency)
+        : ElectricCar(carID, model, batteryCapacity) { // Calls the constructor of ElectricCar
+        this->fuelEfficiency = fuelEfficiency;
+    }
+
+    // Full parameterized constructor
     HybridCar(int carID, string model, bool isAvailable, double rentalRate, double batteryCapacity, double fuelEfficiency)
         : ElectricCar(carID, model, isAvailable, rentalRate, batteryCapacity) {
         this->fuelEfficiency = fuelEfficiency;
     }
 
-    //display hybrid car details
+    // Display hybrid car details
     void displayDetails() const {
         ElectricCar::displayDetails();  // Call the base class method to display electric car details
         cout << "Fuel Efficiency: " << fuelEfficiency << " miles per gallon (mpg)" << endl;
