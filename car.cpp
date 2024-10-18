@@ -43,7 +43,7 @@ public:
     }
 
     // Destructor
-    ~Car() {
+    virtual ~Car() {
         totalCars--;
     }
 
@@ -108,13 +108,8 @@ public:
         return rate * (1 - discountPercentage / 100);
     }
 
-   // Virtual method to display car details
-    virtual void displayDetails() const {
-        cout << "Car ID: " << getCarID() << ", Model: " << getModel() << ", Availability: "
-             << (getIsAvailable() ? "Yes" : "No") << ", Rental Rate: $" << getRentalRate() << endl;
-    }
-
-
+    // Declare displayDetails as a pure virtual function
+    virtual void displayDetails() const = 0; // Pure virtual function
 };
 
 // Initialize static variables
@@ -144,13 +139,13 @@ public:
         this->batteryCapacity = batteryCapacity;
     }
 
-    // to display electric car details
-    void displayDetails() const {
-        Car::displayDetails();  // Call the base class method to display car details
+    // Override the pure virtual function from Car
+    void displayDetails() const override {
+        cout << "Car ID: " << getCarID() << ", Model: " << getModel() << ", Availability: "
+             << (getIsAvailable() ? "Yes" : "No") << ", Rental Rate: $" << getRentalRate() << endl;
         cout << "Battery Capacity: " << batteryCapacity << " kWh" << endl;
     }
 };
-
 
 // HybridCar class inherits from ElectricCar (Multilevel Inheritance)
 class HybridCar : public ElectricCar {
@@ -158,7 +153,7 @@ private:
     double fuelEfficiency; // Additional attribute for hybrid cars
 
 public:
-     // Default constructor
+    // Default constructor
     HybridCar() : ElectricCar() {
         fuelEfficiency = 0.0; // Default fuel efficiency
     }
@@ -175,9 +170,9 @@ public:
         this->fuelEfficiency = fuelEfficiency;
     }
 
-    // Display hybrid car details
-    void displayDetails() const {
-        ElectricCar::displayDetails();  // Call the base class method to display electric car details
+    // Override the pure virtual function from Car
+    void displayDetails() const override {
+        ElectricCar::displayDetails(); // Display details from ElectricCar
         cout << "Fuel Efficiency: " << fuelEfficiency << " miles per gallon (mpg)" << endl;
     }
-};
+}; 
