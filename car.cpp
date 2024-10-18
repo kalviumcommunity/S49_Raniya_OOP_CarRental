@@ -6,30 +6,24 @@ using namespace std;
 // Car class definition
 class Car {
 private:
-
-//internal details of a car that users should not be able to modify directly
     int carID;
     string model;
     bool isAvailable;
     double rentalRate;
 
-
-//public data members  for operations like renting or returning car etc, mutators and accessors are also public
 public:
-    static int totalCars; 
-    static double discountPercentage; 
+    static int totalCars;
+    static double discountPercentage;
 
-     //default constructor
+    // Default constructor
     Car() {
         carID = 0;
         model = "default";
         isAvailable = true;
-        rentalRate=0.0;
-        
+        rentalRate = 0.0;
     }
 
-
-    // parameterized Constructor
+    // Parameterized constructor
     Car(int carID, string model, bool isAvailable, double rentalRate) {
         setCarID(carID);
         setModel(model);
@@ -38,7 +32,8 @@ public:
         totalCars++;
     }
 
-    ~Car(){
+    // Destructor
+    ~Car() {
         totalCars--;
     }
 
@@ -76,6 +71,7 @@ public:
         rentalRate = rate;
     }
 
+    // Rent the car
     void rentCar() {
         if (isAvailable) {
             double discountedRate = applyDiscount(rentalRate);
@@ -87,6 +83,7 @@ public:
         }
     }
 
+    // Return the car
     void returnCar() {
         if (!isAvailable) {
             isAvailable = true;
@@ -96,6 +93,7 @@ public:
         }
     }
 
+    // Static method to apply discount
     static double applyDiscount(double rate) {
         return rate * (1 - discountPercentage / 100);
     }
@@ -103,10 +101,51 @@ public:
     // Method to display car details
     void displayDetails() const {
         cout << "Car ID: " << getCarID() << ", Model: " << getModel() << ", Availability: "
-             << (getIsAvailable() ? "Yes" : "No") << endl;
+             << (getIsAvailable() ? "Yes" : "No") << ", Rental Rate: $" << getRentalRate() << endl;
     }
 };
 
 // Initialize static variables
-int Car::totalCars = 0; 
+int Car::totalCars = 0;
 double Car::discountPercentage = 11.0;
+
+// ElectricCar class inherits Car (Single Inheritance)
+class ElectricCar : public Car {
+private:
+    double batteryCapacity;
+
+public:
+    // Constructor
+    ElectricCar(int carID, string model, bool isAvailable, double rentalRate, double batteryCapacity)
+    : Car(carID, model, isAvailable, rentalRate) {  
+    this->batteryCapacity = batteryCapacity;
+}
+
+
+    // to display electric car details
+    void displayDetails() const {
+        Car::displayDetails();  // Call the base class method to display car details
+        cout << "Battery Capacity: " << batteryCapacity << " kWh" << endl;
+    }
+};
+
+
+
+// HybridCar class inherits from ElectricCar (Multilevel Inheritance)
+class HybridCar : public ElectricCar {
+private:
+    double fuelEfficiency; // Additional attribute for hybrid cars
+
+public:
+    // Constructor
+    HybridCar(int carID, string model, bool isAvailable, double rentalRate, double batteryCapacity, double fuelEfficiency)
+        : ElectricCar(carID, model, isAvailable, rentalRate, batteryCapacity) {
+        this->fuelEfficiency = fuelEfficiency;
+    }
+
+    //display hybrid car details
+    void displayDetails() const {
+        ElectricCar::displayDetails();  // Call the base class method to display electric car details
+        cout << "Fuel Efficiency: " << fuelEfficiency << " miles per gallon (mpg)" << endl;
+    }
+};

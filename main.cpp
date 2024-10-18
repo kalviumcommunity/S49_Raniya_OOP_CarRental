@@ -2,32 +2,30 @@
 #include <string>
 #include "car.cpp"
 #include "user.cpp"
-// Forward declarations of Car and User classes
-class Car; // Forward declaration
-class User; // Forward declaration
+
 
 int main() {
    // Creating instances of Car and User using dynamic memory allocation
-    Car* car1 = new Car(101, "Toyota Corolla", true, 50.0);
+    Car* car1 = new Car(101, "Toyota C", true, 50.0);
     User* user1 = new User(1, "John Doe");
-
-    //usiing default constructor
-     Car* car2 = new Car(); 
-     User* user2 = new User();
+    ElectricCar* eCar1 = new ElectricCar(902, "Tesla electric",  true, 100.0, 75.0);
+    HybridCar* hCar1 = new HybridCar(103, "Toyota Prius hybrid", true, 120.0, 65.0, 50.0);
 
      // Displaying details
     car1->displayDetails();
-    car2->displayDetails();
+   
+    eCar1->displayDetails();
     user1->displayDetails();
-    user2->displayDetails();
+    hCar1->displayDetails();
+ 
 
-    // Demonstrating renting and returning a car
+    //  renting and returning a car
     car1->rentCar();
     car1->displayDetails();
     car1->returnCar();
     car1->displayDetails();
 
-    // Demonstrating user registration and login
+    //  user registration and login
     user1->registerUser();
     user1->login();
 
@@ -39,15 +37,9 @@ int main() {
     // Freeing allocated memory
     delete car1;
     delete user1;
-
-    delete car2;
-    delete user2;
-
-    return 0;
+    delete hCar1;
+    delete eCar1;
 
    
-
-    
-
     return 0;
 }
