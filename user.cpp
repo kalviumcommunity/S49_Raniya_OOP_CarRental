@@ -1,3 +1,6 @@
+// This class handles user-related data and operations.
+// It adheres to SRP by focusing only on managing the user details and actions.
+
 class User {
 
 //user should not be able to modify them directly hence they are private 
@@ -47,12 +50,13 @@ public:
         name = nm;
     }
 
-    // Method to register the user
+     // SRP: This method registers the user, focusing on user actions only.
     void registerUser() {
         cout << "User " << name << " registered." << endl;
     }
 
-    // Method to login the user
+      // SRP: This method logs in the user, again focusing on a specific user action.
+
     void login() {
         cout << "User " << name << " logged in." << endl;
     }

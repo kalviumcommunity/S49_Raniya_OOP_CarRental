@@ -3,7 +3,8 @@
 
 using namespace std;
 
-// Car class definition
+// SRP: The Car class is responsible only for car-related data and actions.
+
 class Car {
 private:
     int carID;
@@ -81,7 +82,7 @@ public:
         rentalRate = rate;
     }
 
-    // Rent the car
+   // SRP: This method only focuses on renting a car.
     void rentCar() {
         if (isAvailable) {
             double discountedRate = applyDiscount(rentalRate);
@@ -93,7 +94,8 @@ public:
         }
     }
 
-    // Return the car
+        // SRP: This method handles returning the car and updating its availability.
+
     void returnCar() {
         if (!isAvailable) {
             isAvailable = true;
@@ -117,6 +119,7 @@ int Car::totalCars = 0;
 double Car::discountPercentage = 11.0;
 
 // ElectricCar class inherits Car (Single Inheritance)
+// SRP: ElectricCar class extends Car, focusing on electric cars specifically.
 class ElectricCar : public Car {
 private:
     double batteryCapacity;
@@ -148,6 +151,8 @@ public:
 };
 
 // HybridCar class inherits from ElectricCar (Multilevel Inheritance)
+// SRP: HybridCar extends ElectricCar, focusing on hybrid cars with fuel efficiency.
+
 class HybridCar : public ElectricCar {
 private:
     double fuelEfficiency; // Additional attribute for hybrid cars
