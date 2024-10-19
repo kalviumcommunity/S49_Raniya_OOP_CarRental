@@ -86,7 +86,5 @@ int main() {
     carPtr->displayDetails();  // Calls HybridCar's displayDetails
 
 
-
-   
     return 0;
 }
